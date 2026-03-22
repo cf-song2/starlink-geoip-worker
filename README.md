@@ -10,7 +10,7 @@ Cloudflare Worker that syncs Starlink's GeoIP feed into Zero Trust Gateway Lists
 
 ## What It Does
 
-1. Cron triggers daily at **03:00 UTC**
+1. Cron triggers daily at **18:00 UTC**
 2. Fetches the Starlink GeoIP CSV feed
 3. Splits CIDRs into IPv4 and IPv6
 4. Creates or updates two Zero Trust Gateway Lists:

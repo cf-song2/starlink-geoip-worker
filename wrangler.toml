@@ -8,4 +8,4 @@ IPV4_LIST_NAME = "Starlink GeoIP - IPv4"
 IPV6_LIST_NAME = "Starlink GeoIP - IPv6"
 
 [triggers]
-crons = ["0 3 * * *"] # Daily at 03:00 UTC
+crons = ["0 18 * * *"] # Daily at 18:00 UTC (= KST 03:00)
