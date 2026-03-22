@@ -1,0 +1,11 @@
+name = "starlink-geoip-worker"
+main = "src/index.ts"
+compatibility_date = "2024-12-01"
+
+[vars]
+STARLINK_FEED_URL = "https://geoip.starlinkisp.net/feed.csv"
+IPV4_LIST_NAME = "Starlink GeoIP - IPv4"
+IPV6_LIST_NAME = "Starlink GeoIP - IPv6"
+
+[triggers]
+crons = ["0 3 * * *"] # Daily at 03:00 UTC
