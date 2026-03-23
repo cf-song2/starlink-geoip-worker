@@ -4,6 +4,7 @@ export interface Env {
   STARLINK_FEED_URL: string;
   IPV4_LIST_NAME: string;
   IPV6_LIST_NAME: string;
+  TRIGGER_SECRET: string;
 }
 
 // ---------------------------------------------------------------------------
@@ -242,6 +243,16 @@ export default {
 
   async fetch(request: Request, env: Env, _ctx: ExecutionContext): Promise<Response> {
     const url = new URL(request.url);
+
+    // Auth guard for sensitive endpoints
+    const isProtected = url.pathname === "/trigger" || url.pathname === "/debug";
+    if (isProtected) {
+      const authHeader = request.headers.get("Authorization") ?? "";
+      const token = authHeader.startsWith("Bearer ") ? authHeader.slice(7) : "";
+      if (token !== env.TRIGGER_SECRET) {
+        return Response.json({ error: "Unauthorized" }, { status: 401 });
+      }
+    }
 
     // Manual trigger
     if (url.pathname === "/trigger") {
